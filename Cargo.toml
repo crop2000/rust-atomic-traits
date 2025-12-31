@@ -9,6 +9,7 @@ keywords = ["atomic", "traits"]
 categories = ["algorithms", "no-std"]
 license = "MIT/Apache-2.0"
 readme = "README.md"
+edition = "2024"
 
 [badges]
 travis-ci = { repository = "flier/rust-atomic-traits", branch = "master" }
@@ -26,11 +27,27 @@ integer_atomics = []
 
 loom_atomics = ["loom"]
 
+
 unstable = ["atomic_from_mut", "atomic_bool_fetch_not"]
 atomic_from_mut = []
 atomic_bool_fetch_not = []
 
+atomic_nand = []
+use_target_has_atomic = []
+since_1_15_0 = []
+since_1_10_0 = []
+since_1_27_0 = []
+since_1_34_0 = []
+since_1_45_0 = []
+since_1_50_0 = []
+since_1_53_0 = []
+since_1_60_0 = []
+since_1_70_0 = []
+since_1_75_0 = []
+
 [dependencies]
+atomic_float = { git = "https://github.com/crop2000/atomic_float", version = "1.1.0" }
+
 cfg-if = "1"
 
 loom = { version = "0.7", optional = true }
