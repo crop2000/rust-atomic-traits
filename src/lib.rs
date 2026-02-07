@@ -64,7 +64,10 @@ cfg_if! {
 
 use core::sync::atomic::*;
 extern crate atomic_float;
-use atomic_float::{AtomicF32, AtomicF64};
+#[cfg(target_has_atomic = "32")]
+use atomic_float::AtomicF32;
+#[cfg(target_has_atomic = "64")]
+use atomic_float::AtomicF64;
 
 pub mod fetch;
 
@@ -791,7 +794,9 @@ cfg_if! {
     }
 }
 
+#[cfg(target_has_atomic = "32")]
 impl_atomic!(AtomicF32: f32; bitwise, numops, as_ptr, from_ptr, from_mut);
+#[cfg(target_has_atomic = "64")]
 impl_atomic!(AtomicF64: f64; bitwise, numops, as_ptr, from_ptr, from_mut);
 
 #[cfg(any(feature = "integer_atomics", feature = "since_1_34_0"))]
