@@ -680,7 +680,9 @@ macro_rules! impl_atomic {
         ))]
         impl FromPtr for $atomic {
             unsafe fn from_ptr<'a>(ptr: *mut Self::Type) -> &'a Self {
-                Self::from_ptr(ptr)
+                unsafe {
+                    Self::from_ptr(ptr)
+                }
             }
         }
     };
@@ -692,7 +694,9 @@ macro_rules! impl_atomic {
         ))]
         impl < $param > FromPtr for $atomic < $param > {
             unsafe fn from_ptr<'a>(ptr: *mut Self::Type) -> &'a Self {
-                Self::from_ptr(ptr)
+                unsafe {
+                    Self::from_ptr(ptr)
+                }
             }
         }
     };
